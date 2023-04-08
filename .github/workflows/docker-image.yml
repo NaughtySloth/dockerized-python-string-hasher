@@ -50,7 +50,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: ${{ env.DOCKER_USERNAME }}/${{ matrix.service }}
+        images: ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}
       
     - name: Build and tag Docker image
       uses: docker/build-push-action@v4
@@ -58,12 +58,12 @@ jobs:
         context: ./${{ matrix.service-name }}
         push: true
         tags: |
-          ${{ env.DOCKER_USERNAME }}/${{ matrix.service }}:$NOW
+          ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}:$NOW
 
     - name: Push metadata to Docker Hub
       uses: docker/metadata-action@v4
       with:
         images: |
-          ${{ env.DOCKER_USERNAME }}/${{ matrix.service }}:$NOW
-        username: ${{ env.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+          ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}:$NOW
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
