@@ -1,10 +1,9 @@
 import requests
-import sys
 
 SERVICE1_URL = "http://service.example.com:8080"
 WEB_PAGE_URL = "https://www.google.com/"
 
-#message = requests.get(sys.stdin.readline()).text
+# message = requests.get(sys.stdin.readline()).text
 # the line above reads the string from the keyboard and not from a website as per the instructions
 # so I've changed it to read from a website instead and send that to the other service for hashing
 

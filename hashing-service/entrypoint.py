@@ -12,10 +12,11 @@ h.update(str.encode(message))
 print h.hexdigest()
 """
 
-# the old code is written in Python2 which is deprecated so I've upgraded it to v3 and also made some other improvements to make the code more readable and robust
-# it also reads the input from stdin which I've replaced with reading from the request from the other service passed by fwatchdog
-import sys
+# the old code is written in Python2 which is deprecated so I've upgraded it to v3 and also made some other
+# improvements to make the code more readable and robust it also reads the input from stdin which I've replaced with
+# reading from the request from the other service passed by fwatchdog
 import hashlib
+
 
 def handle(req):
     # shorter version of the code which uses .map to avoid loops
