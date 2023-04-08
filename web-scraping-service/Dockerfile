@@ -2,7 +2,7 @@
 # we should avoid using :latest when fetching docker images as it can lead to compatibility issues down the line
 # it doesn't matter much in this example but in production we should aim for reproducible builds so I've changed it to the latest python 3.11.2 version as v2 is deprecated 
 
-FROM python:3.11.2
+FROM python:3.11.2-alpine
 
 # fwatchdog isn't needed as this service won't recieve any external calls and will only call the other service
 #RUN curl -sL https://github.com/openfaas/faas/releases/download/0.9.14/fwatchdog > /usr/bin/fwatchdog \
