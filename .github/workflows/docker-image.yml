@@ -29,7 +29,7 @@ jobs:
       run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
       
     - name: Echo current date
-      run: echo "NOW=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
+      run: echo "{date}=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
         
     - name: Build and test ${{ matrix.service }}
       working-directory: ./${{ matrix.service }}
@@ -50,7 +50,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}
+        images: naughtysloth/${{ matrix.service }}
       
     - name: Build and tag Docker image
       uses: docker/build-push-action@v4
@@ -58,12 +58,12 @@ jobs:
         context: ./${{ matrix.service-name }}
         push: true
         tags: |
-          ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}:$NOW
+          naughtysloth/${{ matrix.service }}:${{ env.date }}
 
     - name: Push metadata to Docker Hub
       uses: docker/metadata-action@v4
       with:
         images: |
-          ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}:$NOW
+          naughtysloth/${{ matrix.service }}:${{ env.date }}
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
