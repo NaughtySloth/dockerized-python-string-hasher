@@ -28,9 +28,6 @@ jobs:
     - name: Set Python path to root directory
       run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
       
-    - name: Echo current date
-      run: echo "{date}=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
-        
     - name: Build and test ${{ matrix.service }}
       working-directory: ./${{ matrix.service }}
       run: |
@@ -58,12 +55,12 @@ jobs:
         context: ./${{ matrix.service-name }}
         push: true
         tags: |
-          naughtysloth/${{ matrix.service }}:${{ env.date }}
+          naughtysloth/${{ matrix.service }}:latest
 
     - name: Push metadata to Docker Hub
       uses: docker/metadata-action@v4
       with:
         images: |
-          naughtysloth/${{ matrix.service }}:${{ env.date }}
+          naughtysloth/${{ matrix.service }}:latest
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
