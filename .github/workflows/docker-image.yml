@@ -50,9 +50,9 @@ jobs:
         images: naughtysloth/${{ matrix.service }}
       
     - name: Build and tag Docker image
-      working-directory: ./${{ matrix.service }}
       run: |
-        docker build -t naughtysloth/${{ matrix.service }}:latest ./${{ matrix.service }}
+        cd ./${{ matrix.service }}
+        docker build -t naughtysloth/${{ matrix.service }}:latest .
         docker push naughtysloth/${{ matrix.service }}:latest
 
     - name: Push metadata to Docker Hub
