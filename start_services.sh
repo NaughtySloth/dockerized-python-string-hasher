@@ -40,5 +40,4 @@ fi
 docker run -d --name hashing-service --network my-network -p 8080:8080 naughtysloth/hashing-service:"${version_hashing_service}"
 docker run -d --name web-scraping-service --network my-network naughtysloth/web-scraping-service:"${version_web_scraping_service}"
 
-sleep 10
 read -p "Press Enter to continue..."
