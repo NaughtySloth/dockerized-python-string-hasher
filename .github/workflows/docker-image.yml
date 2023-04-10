@@ -28,7 +28,7 @@ jobs:
     - name: Set Python path to root directory
       run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
       
-    - name: Build and test ${{ matrix.service }}
+    - name: Build and test (unit and integration) ${{ matrix.service }}
       working-directory: ./${{ matrix.service }}
       run: |
         python -m venv env
@@ -36,6 +36,7 @@ jobs:
         pip install -r ../requirements.txt
         pip install pytest
         python -m pytest -p no:pytest-warnings -v || true
+        python -m pytest -p no:pytest-warnings -v ../integration_tests/ || true
       
     - name: Log in to Docker Hub
       uses: docker/login-action@v2

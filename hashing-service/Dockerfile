@@ -15,6 +15,8 @@ RUN apk add --no-cache --virtual .build-deps gcc musl-dev \
 
 # added multi-stage builds to reduce overhead
 FROM python:3.11.2-alpine
+RUN pip3 install flask
+
 COPY --from=builder /usr/bin/fwatchdog /usr/bin/fwatchdog
 COPY entrypoint.py .
 
