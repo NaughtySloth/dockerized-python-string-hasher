@@ -1,6 +1,6 @@
 import requests
 
-SERVICE1_URL = "http://service.example.com:8080"
+SERVICE1_URL = "http://hashing-service:8080"
 WEB_PAGE_URL = "https://www.google.com/"
 
 # message = requests.get(sys.stdin.readline()).text
